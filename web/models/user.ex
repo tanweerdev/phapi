@@ -17,6 +17,7 @@ defmodule Phapi.User do
     field :confirmed_at, Ecto.DateTime
     field :unconfirmed_email, :string
 
+    has_many :sessions, Phapi.Session
 		timestamps()
 	end
 
@@ -29,7 +30,7 @@ defmodule Phapi.User do
   """
   def changeset(struct, params \\ %{}) do
     struct
-    |> validate_user params
+    |> validate_user(params)
   end
 
   def registration_changeset(struct, params \\ %{}) do
